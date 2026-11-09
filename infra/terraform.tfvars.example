@@ -1,0 +1,5 @@
+# Copie para terraform.tfvars com valores reais. Nunca commite o real.
+
+db_engine_version  = "15.00.4430.1.v1"
+db_master_username = "os_admin"
+db_master_password = "CHANGE_ME_STRONG_PASSWORD"
