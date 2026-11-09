@@ -86,6 +86,10 @@ recebe a `homologacao` por Pull Request. Nada é commitado direto nas duas.
 | push em `homologacao` | `plan` — não há ambiente de homologação na AWS |
 | push em `main` | `plan` e **`apply` automático** no Environment `production` |
 
+**Trava de publicação:** o `apply` (automático ou manual) só roda com a Repository Variable
+`PUBLICAR_AWS=true` (Settings → Secrets and variables → Actions → Variables). Sem ela, a `main`
+roda apenas o `plan` e nada é criado na AWS.
+
 O `apply` manual (`workflow_dispatch`) só roda a partir da `main`. Configure revisores obrigatórios
 no Environment `production`: recriar o RDS apaga os dados (sem snapshot final neste projeto).
 

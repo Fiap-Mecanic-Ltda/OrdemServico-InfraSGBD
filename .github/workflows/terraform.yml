@@ -98,8 +98,13 @@ jobs:
     # Automatico em push na main; manual (workflow_dispatch) so a partir da
     # main. Sem ambiente de homologacao, aplicar outra branch mexeria no banco
     # de producao com codigo nao revisado.
+    #
+    # Trava de publicacao: enquanto a Repository Variable PUBLICAR_AWS nao for
+    # "true", nem o push na main nem o disparo manual criam o banco na AWS -
+    # so o plan roda.
     if: >-
       github.ref == 'refs/heads/main' &&
+      vars.PUBLICAR_AWS == 'true' &&
       (github.event_name == 'push' ||
        (github.event_name == 'workflow_dispatch' && inputs.action == 'apply'))
     runs-on: ubuntu-latest
